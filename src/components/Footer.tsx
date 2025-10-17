@@ -31,7 +31,7 @@ const Footer = () => {
   const Company = [
     { title: "About Us", path: "about" },
     { title: "Our Team", path: "team" },
-    {title: "Contact", path:"contact"}
+    { title: "Contact", path: "contact" },
   ];
 
   const footerSections = [
@@ -70,9 +70,13 @@ const Footer = () => {
     },
   ];
 
+  const Message = () => {
+    alert("Subscribed");
+  };
+
   const socialMedia = [
     { icon: Facebook, href: "#", name: "Facebook" },
-    { icon: Twitter, href: "#", name: "Twitter" },
+    { icon: Twitter, href: "#", name: "Instagram" },
     { icon: Linkedin, href: "#", name: "LinkedIn" },
     { icon: Instagram, href: "#", name: "Instagram" },
   ];
@@ -156,7 +160,10 @@ const Footer = () => {
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-200"
               />
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap">
+              <button
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap"
+                onClick={Message}
+              >
                 Subscribe
               </button>
             </div>
@@ -194,3 +201,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

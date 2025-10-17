@@ -1,16 +1,21 @@
-import React from 'react';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import React from "react";
+import { ArrowRight, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const benefits = [
-    'Professional Website Development',
-    'Bulk SMS & RCS Messaging',
-    'Advanced Communication Solutions',
-    '24/7 Support & Maintenance'
+    "Professional Website Development",
+    "Bulk SMS & RCS Messaging",
+    "Advanced Communication Solutions",
+    "24/7 Support & Maintenance",
   ];
 
   return (
-    <section id="home" className="pt-20 min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <section
+      id="home"
+      className="pt-20 min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -24,8 +29,10 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
-                We specialize in professional website development and advanced messaging solutions including 
-                bulk SMS and RCS messaging to help your business communicate effectively and thrive in the digital age.
+                We specialize in professional website development and advanced
+                messaging solutions including bulk SMS and RCS messaging to help
+                your business communicate effectively and thrive in the digital
+                age.
               </p>
             </div>
 
@@ -42,10 +49,15 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2">
-                <span>Start Your Project</span>
+                <span onClick={() => navigate("/contact")}>
+                  Start Your Project
+                </span>
                 <ArrowRight className="h-5 w-5" />
               </button>
-              <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300">
+              <button
+                className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300"
+                onClick={() => navigate("/contact")}
+              >
                 View Our Work
               </button>
             </div>
@@ -54,11 +66,15 @@ const Hero = () => {
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200">
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-600">500+</div>
-                <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
+                <div className="text-sm text-gray-600 font-medium">
+                  Projects Completed
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-600">100M+</div>
-                <div className="text-sm text-gray-600 font-medium">Messages Delivered</div>
+                <div className="text-sm text-gray-600 font-medium">
+                  Messages Delivered
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-emerald-600">99.9%</div>
@@ -76,19 +92,29 @@ const Hero = () => {
                     <CheckCircle className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Professional Solutions</h3>
-                    <p className="text-gray-600 text-sm">Tailored for your business</p>
+                    <h3 className="font-semibold text-gray-900">
+                      Professional Solutions
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Tailored for your business
+                    </p>
                   </div>
                 </div>
                 <div className="h-32 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600 font-medium">Your Success Story</span>
+                  <span className="text-gray-600 font-medium">
+                    Your Success Story
+                  </span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="h-16 bg-emerald-100 rounded-lg flex items-center justify-center">
-                    <span className="text-emerald-700 text-sm font-medium">Websites</span>
+                    <span className="text-emerald-700 text-sm font-medium">
+                      Websites
+                    </span>
                   </div>
                   <div className="h-16 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <span className="text-purple-700 text-sm font-medium">Messaging</span>
+                    <span className="text-purple-700 text-sm font-medium">
+                      Messaging
+                    </span>
                   </div>
                 </div>
               </div>

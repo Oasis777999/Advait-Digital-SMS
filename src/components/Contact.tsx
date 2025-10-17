@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
 import { Mail, Phone, MapPin, Send, Clock, MessageCircle, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    service: '',
-    message: ''
-  });
-
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
 
   const contactInfo = [
     {
@@ -30,7 +26,7 @@ const Contact = () => {
       icon: MapPin,
       title: 'Visit Us',
       detail: 'Office No. 522, 5th floor',
-      description: 'Amnora Chambers, Pune',
+      description: 'Amanora Chambers, Pune',
       color: 'text-emerald-600'
     }
   ];
@@ -44,18 +40,27 @@ const Contact = () => {
     'Other'
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    if (!form.current) return;
+    setLoading(true);
+
+    emailjs
+      .sendForm('service_n4o3qt8', 'template_ewy42m8', form.current, '5DIc3xt5b2_lr3pSS')
+      .then(
+        () => {
+          setIsSubmitted(true);
+          setLoading(false);
+          form.current?.reset();
+          setTimeout(() => setIsSubmitted(false), 4000);
+        },
+        (error) => {
+          console.error('FAILED...', error);
+          alert('Something went wrong. Please try again.');
+          setLoading(false);
+        }
+      );
   };
 
   return (
@@ -64,7 +69,10 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold">
-            Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
+            Get In{' '}
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Touch
+            </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ready to transform your business? Let's discuss your project and see how we can help you achieve your goals.
@@ -130,7 +138,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold">Send us a Message</h3>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={form} onSubmit={sendEmail} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -138,24 +146,20 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      name="user_name"
                       required
                       className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-200"
                       placeholder="Enter your full name"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
                       Email Address *
                     </label>
                     <input
                       type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
+                      name="user_email"
                       required
                       className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-200"
                       placeholder="Enter your email"
@@ -165,17 +169,31 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Service Interested In
+                    Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-200"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Service Interested In (Subject)
                   </label>
                   <select
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
+                    name="subject"
+                    required
                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-200"
                   >
                     <option value="">Select a service</option>
                     {services.map((service, index) => (
-                      <option key={index} value={service}>{service}</option>
+                      <option key={index} value={service}>
+                        {service}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -186,8 +204,6 @@ const Contact = () => {
                   </label>
                   <textarea
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     required
                     rows={6}
                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-200 resize-none"
@@ -197,10 +213,12 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  disabled={isSubmitted}
+                  disabled={loading}
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitted ? (
+                  {loading ? (
+                    <span className="animate-pulse">Sending...</span>
+                  ) : isSubmitted ? (
                     <>
                       <CheckCircle className="h-5 w-5" />
                       <span>Message Sent!</span>
@@ -231,3 +249,4 @@ const Contact = () => {
 };
 
 export default Contact;
+ 
