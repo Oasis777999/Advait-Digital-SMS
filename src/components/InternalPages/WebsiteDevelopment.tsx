@@ -157,7 +157,7 @@ const WebsiteDevelopment = () => {
             Ready to build your online presence?
           </h3>
           <p className="text-gray-600 mb-6">
-            Let us help you create a professional, high-performing website tailored to your business goals.
+            Let’s build a website that works as hard as you do—crafted to fit your goals and grow your business.
           </p>
           <a
             href="#contact"

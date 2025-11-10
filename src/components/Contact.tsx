@@ -1,53 +1,71 @@
-import React, { useState, useRef } from 'react';
-import emailjs from 'emailjs-com';
-import { Mail, Phone, MapPin, Send, Clock, MessageCircle, CheckCircle } from 'lucide-react';
+import React, { useState, useRef } from "react";
+import emailjs from "emailjs-com";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Clock,
+  MessageCircle,
+  CheckCircle,
+} from "lucide-react";
 
 const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const form = useRef<HTMLFormElement>(null);
 
-  const contactInfo = [
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycby2jCOJQGWMSnf7NVlp0B20gGRBFgHFTQA6YjRM9CzPe2TLC3Saf0eK40Hsm_pdxrGCwg/exec";
+
+  const contactInfo = [    
     {
       icon: Mail,
-      title: 'Email Us',
-      detail: 'support@advaitteleservices.com',
-      description: 'Send us an email anytime',
-      color: 'text-blue-600'
+      title: "Email Us",
+      detail: "support@advaitteleservices.com",
+      description: "Send us an email anytime",
+      color: "text-blue-600",
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      detail: '+91 8282982829',
-      description: 'Mon-Fri from 10am to 6pm',
-      color: 'text-purple-600'
+      title: "Call Us",
+      detail: "+91 8282982829",
+      description: "Mon-Fri from 10am to 6pm",
+      color: "text-purple-600",
     },
     {
       icon: MapPin,
-      title: 'Visit Us',
-      detail: 'Office No. 522, 5th floor',
-      description: 'Amanora Chambers, Pune',
-      color: 'text-emerald-600'
-    }
+      title: "Visit Us",
+      detail: "Office No. 522, 5th floor",
+      description: "Amanora Chambers, Pune",
+      color: "text-emerald-600",
+    },
   ];
 
   const services = [
-    'Website Development',
-    'Bulk SMS Services',
-    'RCS Messaging',
-    'SMS Gateway Integration',
-    'API Integration',
-    'Other'
+    "Website Development",
+    "Bulk SMS Services",
+    "RCS Messaging",
+    "SMS Gateway Integration",
+    "API Integration",
+    "Other",
   ];
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
+    sendDataToSheet();
+
     if (!form.current) return;
     setLoading(true);
 
     emailjs
-      .sendForm('service_n4o3qt8', 'template_ewy42m8', form.current, '5DIc3xt5b2_lr3pSS')
+      .sendForm(
+        "service_n4o3qt8",
+        "template_ewy42m8",
+        form.current,
+        "5DIc3xt5b2_lr3pSS"
+      )
       .then(
         () => {
           setIsSubmitted(true);
@@ -56,11 +74,30 @@ const Contact = () => {
           setTimeout(() => setIsSubmitted(false), 4000);
         },
         (error) => {
-          console.error('FAILED...', error);
-          alert('Something went wrong. Please try again.');
+          console.error("FAILED...", error);
+          alert("Something went wrong. Please try again.");
           setLoading(false);
         }
       );
+  };
+
+  const sendDataToSheet = async () => {
+    
+    try {
+      const formData = new FormData(form.current);
+      const formObject = Object.fromEntries(formData.entries());
+      await fetch(scriptURL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "content-Type": "application/json",
+        },
+        body: JSON.stringify(formObject),
+      });
+      
+    } catch (error) {
+      console.log("Error : ", error);
+    }
   };
 
   return (
@@ -69,13 +106,14 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold">
-            Get In{' '}
+            Get In{" "}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your business? Let's discuss your project and see how we can help you achieve your goals.
+            Ready to transform your business? Let's discuss your project and see
+            how we can help you achieve your goals.
           </p>
         </div>
 
@@ -85,7 +123,8 @@ const Contact = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6">Let's Talk</h3>
               <p className="text-gray-300 leading-relaxed mb-8">
-                We're here to help you succeed. Reach out to us through any of the channels below, and we'll get back to you within 24 hours.
+                We're here to help you succeed. Reach out to us through any of
+                the channels below, and we'll get back to you within 24 hours.
               </p>
             </div>
 
@@ -98,9 +137,15 @@ const Contact = () => {
                       <Icon className={`h-6 w-6 ${info.color}`} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-white mb-1">{info.title}</h4>
-                      <p className={`font-medium ${info.color} mb-1`}>{info.detail}</p>
-                      <p className="text-gray-400 text-sm">{info.description}</p>
+                      <h4 className="font-semibold text-white mb-1">
+                        {info.title}
+                      </h4>
+                      <p className={`font-medium ${info.color} mb-1`}>
+                        {info.detail}
+                      </p>
+                      <p className="text-gray-400 text-sm">
+                        {info.description}
+                      </p>
                     </div>
                   </div>
                 );
@@ -236,7 +281,8 @@ const Contact = () => {
               {isSubmitted && (
                 <div className="mt-6 p-4 bg-emerald-900/50 border border-emerald-600 rounded-lg">
                   <p className="text-emerald-300 text-center">
-                    Thank you for your message! We'll get back to you within 24 hours.
+                    Thank you for your message! We'll get back to you within 24
+                    hours.
                   </p>
                 </div>
               )}
@@ -249,4 +295,3 @@ const Contact = () => {
 };
 
 export default Contact;
- 
