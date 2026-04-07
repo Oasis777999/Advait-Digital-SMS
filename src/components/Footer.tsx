@@ -71,14 +71,14 @@ const Footer = () => {
   ];
 
   const Message = () => {
-    alert("Subscribed");
+    alert("You’ve successfully subscribed to all services. Our team will reach out to you soon");
   };
 
   const socialMedia = [
-    { icon: Facebook, href: "#", name: "Facebook" },
-    { icon: Twitter, href: "#", name: "Instagram" },
-    { icon: Linkedin, href: "#", name: "LinkedIn" },
-    { icon: Instagram, href: "#", name: "Instagram" },
+    { icon: Facebook, href: "https://www.facebook.com", name: "Facebook" },
+    { icon: Twitter, href: "https://x.com", name: "Instagram" },
+    { icon: Linkedin, href: "https://in.linkedin.com", name: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/", name: "Instagram" },
   ];
 
   return (
@@ -173,7 +173,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-center md:text-left">
+            <p className="text-gray-400 text-center md:text-left">Detailed delivery and engagement reports
               © 2025 Advait Digital. All rights reserved. Built with passion for
               digital excellence.
             </p>
@@ -185,6 +185,7 @@ const Footer = () => {
                   <a
                     key={index}
                     href={social.href}
+                    target="_blank"
                     className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:-translate-y-1"
                     aria-label={social.name}
                   >

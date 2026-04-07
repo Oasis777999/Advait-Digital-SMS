@@ -85,7 +85,7 @@ const WebsiteDevelopment = () => {
                   "Security risks if not properly managed.",
                   "Website performance may vary based on hosting.",
                   "Requires regular content and SEO updates."
-                ].map((dis, idx) => (
+                ].map((dis, idx) => ( 
                   <motion.div
                     key={idx}
                     className="flex items-start space-x-4"
@@ -97,7 +97,7 @@ const WebsiteDevelopment = () => {
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </div> 
 
             {/* Features */}
             <div>

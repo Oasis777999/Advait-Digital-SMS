@@ -24,7 +24,7 @@ const Contact = () => {
       title: "Email Us",
       detail: "support@advaitteleservices.com",
       description: "Send us an email anytime",
-      color: "text-blue-600",
+      color: "text-blue-300",
     },
     {
       icon: Phone,
@@ -101,7 +101,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-900 text-white">
+    <section id="contact" className="py-20 bg-blue-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-16">
@@ -165,7 +165,7 @@ const Contact = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Saturday</span>
-                  <span>11:00 AM - 4:00 PM</span>
+                  <span>10:00 AM - 2:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sunday</span>

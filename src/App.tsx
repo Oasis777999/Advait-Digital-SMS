@@ -10,12 +10,14 @@ import WebsiteDevelopment from "./components/InternalPages/WebsiteDevelopment";
 import MessagingSolutions from "./components/InternalPages/MessagingSolutions";
 import CommunicationAPIs from "./components/InternalPages/CommunicationAPIs";
 import TeamSection from "./components/InternalPages/TeamSection";
+import InfoPopUp from "./components/InfoPopUp";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen">
         <Header />
+        <InfoPopUp/>
 
         <Routes>
           <Route

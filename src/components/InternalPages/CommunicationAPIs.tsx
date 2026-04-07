@@ -1,7 +1,7 @@
 import React from "react";
 import { Code, Cloud, Database, CheckCircle, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },

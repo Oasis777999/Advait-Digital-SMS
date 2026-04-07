@@ -10,7 +10,7 @@ const Header = () => {
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "contact" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -18,7 +18,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2" onClick={()=>navigate("/")}>
             <div className="flex items-center space-x-1">
               <Globe className="h-8 w-8 text-blue-600" />
               <MessageSquare className="h-6 w-6 text-purple-600" />
@@ -40,7 +40,7 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200" onClick={()=>navigate("/contact")}>
               Get Started
             </button>
           </nav>
@@ -74,7 +74,7 @@ const Header = () => {
               ))}
               <button
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium mt-4 self-start"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/contact")}
               >
                 Get Started
               </button>

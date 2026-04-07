@@ -48,15 +48,16 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2">
-                <span onClick={() => navigate("/contact")}>
-                  Start Your Project
-                </span>
+              <button
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2"
+                onClick={() => navigate("/contact")}
+              >
+                <span>Start Your Project</span>
                 <ArrowRight className="h-5 w-5" />
               </button>
               <button
                 className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300"
-                onClick={() => navigate("/contact")}
+                onClick={() => navigate("/services")}
               >
                 View Our Work
               </button>
@@ -71,7 +72,7 @@ const Hero = () => {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">100M+</div>
+                <div className="text-3xl font-bold text-purple-600">10M+</div>
                 <div className="text-sm text-gray-600 font-medium">
                   Messages Delivered
                 </div>
@@ -86,7 +87,7 @@ const Hero = () => {
           {/* Visual */}
           <div className="relative">
             <div className="relative z-10 bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-              <div className="space-y-6">
+              {/* <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                     <CheckCircle className="h-6 w-6 text-white" />
@@ -101,8 +102,10 @@ const Hero = () => {
                   </div>
                 </div>
                 <div className="h-32 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600 font-medium">
-                    Your Success Story
+                  <span className="text-gray-600 font-medium p-1">
+                    From high-impact SMS to rich, interactive RCS campaigns, we
+                    help you reach customers at the right moment and turn
+                    messages into measurable success.
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -113,6 +116,60 @@ const Hero = () => {
                   </div>
                   <div className="h-16 bg-purple-100 rounded-lg flex items-center justify-center">
                     <span className="text-purple-700 text-sm font-medium">
+                      Messaging
+                    </span>
+                  </div>
+                </div>
+              </div> */}
+              <div className="space-y-6 p-4 sm:p-6 md:p-8">
+                {/* Header Section */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="h-8 w-8 text-white" />
+                  </div>
+                  <div className="text-center sm:text-left">
+                    <h3 className="font-semibold text-gray-900 text-lg sm:text-xl">
+                      Professional Solutions
+                    </h3>
+                    <p className="text-gray-600 text-sm sm:text-base mt-1">
+                      Tailored for your business
+                    </p>
+                  </div>
+                </div>
+
+                {/* Banner Section */}
+                <div className="h-40 sm:h-48 md:h-56 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg flex items-center justify-center p-4 text-center">
+                  <img
+                    src="https://www.techcodence.com/wp-content/uploads/2025/02/AI-driven-search-results-1024x683.jpg.webp"
+                    alt="Marketing Campaign"
+                    className="absolute inset-0 w-full h-full object-cover rounded-lg opacity-30"
+                  />
+                  <span className="relative text-gray-700 font-medium text-sm sm:text-base md:text-lg">
+                    From high-impact SMS to rich, interactive RCS campaigns, we
+                    help you reach customers at the right moment and turn
+                    messages into measurable success.
+                  </span>
+                </div>
+
+                {/* Services Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="h-20 sm:h-24 bg-emerald-100 rounded-lg flex flex-col items-center justify-center p-2">
+                    <img
+                      src="https://img.icons8.com/ios-filled/50/000000/domain.png"
+                      alt="Websites"
+                      className="h-6 w-6 sm:h-8 sm:w-8 mb-1"
+                    />
+                    <span className="text-emerald-700 text-sm sm:text-base font-medium">
+                      Websites
+                    </span>
+                  </div>
+                  <div className="h-20 sm:h-24 bg-purple-100 rounded-lg flex flex-col items-center justify-center p-2">
+                    <img
+                      src="https://img.icons8.com/ios-filled/50/000000/chat.png"
+                      alt="Messaging"
+                      className="h-6 w-6 sm:h-8 sm:w-8 mb-1"
+                    />
+                    <span className="text-purple-700 text-sm sm:text-base font-medium">
                       Messaging
                     </span>
                   </div>
